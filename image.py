@@ -1,31 +1,45 @@
 import random
-def gamewin():
-    print("WELCOME TO SCISSORS PAPER ROCK GAME!!!")
-    print("ENTER 1 FOR SCISSORS")
-    print("ENTER 2 FOR PAPER")
-    print("ENTER 3 FOR ROCK")
-    PC = random.randint(1,3)
-    Player = int(input("enter your choice:"))
-    attempts = 0
-    while PC != Player:
-        while attempts<=10:
-         
-         
-         attempts+=1
 
+def get_user_choice():
+    user_choice = input("Enter your choice (Snake/Water/Gun): ").strip().lower()
+    while user_choice not in ["snake", "water", "gun"]:
+        print("Invalid choice. Please enter Snake, Water, or Gun.")
+        user_choice = input("Enter your choice (Snake/Water/Gun): ").strip().lower()
+    return user_choice
 
-         if PC == 1 and Player == 3:
-            print("you won!!")
-         elif PC == 2 and Player == 1:
-            print("you won")
-         elif PC == 3 and Player == 2:
-            print("you won")
-         elif PC == 2 and Player == 3:
-            print("you lost,try again.")
-         elif PC== 1 and Player == 2:
-            print("you lost,try again")
-         else:
-            print("you lost,try again")
+def get_computer_choice():
+    choices = ["snake", "water", "gun"]
+    return random.choice(choices)
+
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!"
+    elif user_choice == "snake":
+        return "You win!" if computer_choice == "water" else "Computer wins!"
+    elif user_choice == "water":
+        return "You win!" if computer_choice == "gun" else "Computer wins!"
+    elif user_choice == "gun":
+        return "You win!" if computer_choice == "snake" else "Computer wins!"
+
+def play_game():
+    print("Welcome to Snake Water Gun Game!")
+    print("You are playing against the computer.")
+    print("Choices: Snake, Water, Gun")
+    
+    while True:
+        user_choice = get_user_choice()
+        computer_choice = get_computer_choice()
+        
+        print(f"\nYou chose: {user_choice.capitalize()}")
+        print(f"Computer chose: {computer_choice.capitalize()}")
+        
+        result = determine_winner(user_choice, computer_choice)
+        print(result)
+        
+        play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+        if play_again != "yes":
+            print("Thanks for playing! Goodbye.")
             break
-gamewin()
 
+if __name__ == "__main__":
+    play_game()
