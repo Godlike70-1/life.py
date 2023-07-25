@@ -5,7 +5,7 @@
 # t = string value or texts
 # b = images or other binary values
 
-current_score = 1001
+current_score = 100
 high_score = 0
 if current_score>high_score:
     f = open("score.txt","w")
