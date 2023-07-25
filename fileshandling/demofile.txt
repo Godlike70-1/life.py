@@ -1,0 +1,4 @@
+high score = 0
+current score  = 0
+hi, how are you?
+hello, i m fine.
